@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: cni-dhcp-daemon
+  namespace: kube-system # Common for CNI-related components
+  labels:
+    app: cni-dhcp-daemon
+spec:
+  selector:
+    matchLabels:
+      app: cni-dhcp-daemon
+  template:
+    metadata:
+      labels:
+        app: cni-dhcp-daemon
+    spec:
+      # Ensure the pod runs on all nodes, even those with taints like master nodes,
+      # if you intend the daemon to be on masters (common for CNI).
+      tolerations:
+      - operator: Exists
+        effect: NoSchedule # Often needed for CNI components on master nodes
+      - operator: Exists
+        effect: NoExecute
+
+      # hostNetwork: true is often used for CNI components to allow direct
+      # interaction with the host's network interfaces. While the DHCP daemon
+      # primarily uses a socket, it's a common configuration for CNI DaemonSets.
+      hostNetwork: true
+
+      containers:
+      - name: dhcp-daemon
+        image: us-central1-docker.pkg.dev/northam-ce-mlai-tpu/oli-cni-dhcp-daemon/oli-cni-dhcp-daemon:0.1
+        
+        # Command to run the DHCP daemon.
+        command: ["/opt/cni/bin/dhcp"]
+        args: ["daemon"]
+
+        # with this daemon via /run/cni/dhcp.sock.
+        volumeMounts:
+        - name: cni-dhcp-socket-dir
+          mountPath: /run/cni # The directory inside the container where the socket will be created/accessed
+
+        - name: procpath
+          mountPath: /host/proc
+        - name: netnspath
+          mountPath: /host/var/run/netns
+          mountPropagation: HostToContainer
+
+
+        securityContext:
+          privileged: true
+
+        # Define resource requests and limits. Adjust these based on your environment.
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 50Mi
+
+      # Define the hostPath volume.
+      # This makes the /run/cni directory on the host accessible to the container.
+      volumes:
+      - name: cni-dhcp-socket-dir
+        hostPath:
+          path: /run/cni # The directory on the host machine
+          type: DirectoryOrCreate # Ensures the directory exists or creates it if not
+      - name: procpath
+        hostPath:
+          path: /proc
+      - name: netnspath
+        hostPath:
+          path: /run/netns
