@@ -7,20 +7,10 @@ TAG=0.1
 
 # build the container
 docker build -t $IMAGE_NAME:$TAG .
-gcloud artifacts repositories create $REPO_NAME \
-    --repository-format=docker \
-    --location=$LOCATION \
-    --description="CNI Modified DHCP plugin for GCE"
-
-gcloud artifacts repositories add-iam-policy-binding $REPO_NAME \
-    --location=$LOCATION \
-    --member=allUsers \
-    --role=roles/artifactregistry.reader
 
 # tag it
-FULLY_QUALIFIED_REPO_NAME=$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME:$TAG
+FULLY_QUALIFIED_REPO_NAME=omgoog/$IMAGE_NAME:$TAG
 docker tag $IMAGE_NAME:$TAG $FULLY_QUALIFIED_REPO_NAME
 
-# Authenticate to gcloud artifacts
-gcloud auth configure-docker $LOCATION-docker.pkg.dev
+# Authenticate to docker (docker login)
 docker push $FULLY_QUALIFIED_REPO_NAME
