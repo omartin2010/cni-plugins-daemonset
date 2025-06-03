@@ -43,8 +43,8 @@ spec:
         - name: procpath
           mountPath: /host/proc
         - name: netnspath
-          mountPath: /host/var/run/netns
-          mountPropagation: HostToContainer
+          mountPath: /run/netns
+          mountPropagation: Bidirectional
 
 
         securityContext:
