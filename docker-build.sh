@@ -15,7 +15,7 @@
 # create the artifact repo
 REPO_NAME=oli-cni-dhcp-daemon
 LOCATION=us-central1
-PROJECT_ID=northam-ce-mlai-tpu
+PROJECT_ID=<PROJECT_ID>
 IMAGE_NAME=oli-cni-dhcp-daemon
 TAG=0.1
 
