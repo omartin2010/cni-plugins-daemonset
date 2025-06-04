@@ -1,7 +1,7 @@
 # CNI plugins daemonset
 
 ### Building the CNI plugins image
-The [docker-build.sh](./docker-build.sh) creates the docker image that is pushsed on `omgoog/oli-cni-dhcp-daemon:0.1` with a patched version (see [commit/diff](https://github.com/containernetworking/plugins/commit/77133955f30384ab54d8a6cd4fb965ff9c72e77f) to the [container networking plugins repository](https://github.com/containernetworking/plugins) from which it is forked). The forked [repo is here](https://github.com/omartin2010/plugins): `https://github.com/omartin2010/plugins`.
+The [docker-build.sh](./docker-build.sh) creates the docker image that is pushed on `omgoog/oli-cni-dhcp-daemon:0.1` with a patched version (see [commit/diff](https://github.com/containernetworking/plugins/commit/77133955f30384ab54d8a6cd4fb965ff9c72e77f) to the [container networking plugins repository](https://github.com/containernetworking/plugins) from which it is forked). The forked [repo is here](https://github.com/omartin2010/plugins): `https://github.com/omartin2010/plugins`.
 
 ### Running the tests
 The commands in [microk8s-cni-repro.sh](./microk8s-cni-repro.sh]) reproduce the steps needed to pull the rdma nics in the pod with a DHCP allocated IP address.
@@ -41,7 +41,7 @@ spec:
     }
 ```
 ### PCI Bus ID for the RoCE NICs
-So you can obtain all pciBusID values for all Mellanox NICs on the virtual machine with the command `lspci | grep -i mellanox`".
+You can obtain pciBusID values for Mellanox NICs on the virtual machine with the command `lspci | grep -i mellanox`".
 You will get an output similar to:
 ```
 91:00.0 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
@@ -55,7 +55,7 @@ ce:00.0 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtu
 ```
 From there, if you know which specific NIC you want to use, you can get the IP address of the NIC with the following command (__prepending__ `0000` to the PCI ID above ):
 ``` 
-PCI_ID=0000:91:00.0       # (some of the IDs above - prepended with 0000)
+PCI_ID=0000:91:00.0       # (one of the IDs above - prepended with 0000)
 IP_ADDR=$(ip -4 addr show "$(ls /sys/bus/pci/devices/${PCI_ID}/net)" | \
   grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 echo $IP_ADDR
