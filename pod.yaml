@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-oli
+  # This annotation is required to disable the AppArmor security profile.
+  annotations:
+    # container.apparmor.security.beta.kubernetes.io/ubuntu: unconfined
+    k8s.v1.cni.cncf.io/networks: |
+       [
+        {"name": "rdma-2-dhcp", "interface": "rdma-2-in"}
+       ]
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - image: ubuntu
+    name: ubuntu
+    command: ["/bin/bash", "-c"]
+    args:
+      - |
+        echo "Container started. Checking network interfaces..."
+        ip a
+        echo "Checking Infiniband devices..."
+        ls -l /sys/class/infiniband/ # Check if RDMA devices are visible
+        ibdev2                      # Another command to list Infiniband devices (may need ibutils package)
+        echo "Running a basic command to verify execution..."
+        whoami
+        echo "Starting infinite sleep..."
+        sleep infinity
+        echo "Sleep command exited unexpectedly." # This should ideally not be reached  
+  restartPolicy: OnFailure
