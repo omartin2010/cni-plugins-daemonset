@@ -1,7 +1,7 @@
 # CNI plugins daemonset
 
 ### Building the CNI plugins image
-The [docker-build.sh](./docker-build.sh) creates the docker image that is pushed on `omgoog/oli-cni-dhcp-daemon:0.1` with a patched version (see [commit/diff](https://github.com/containernetworking/plugins/commit/77133955f30384ab54d8a6cd4fb965ff9c72e77f) to the [container networking plugins repository](https://github.com/containernetworking/plugins) from which it is forked). The forked [repo is here](https://github.com/omartin2010/plugins): `https://github.com/omartin2010/plugins`.
+The [docker-build.sh](./docker-build.sh) creates a docker image that was pushed on `omgoog/oli-cni-dhcp-daemon:0.1` with a patched version of the container plugins repo (see [commit/diff](https://github.com/containernetworking/plugins/commit/77133955f30384ab54d8a6cd4fb965ff9c72e77f) to the [container networking plugins repo](https://github.com/containernetworking/plugins)). The forked [repo is here](https://github.com/omartin2010/plugins): `https://github.com/omartin2010/plugins`.
 
 ### Running the tests
 The commands in [microk8s-cni-repro.sh](./microk8s-cni-repro.sh]) reproduce the steps needed to pull the rdma nics in the pod with a DHCP allocated IP address.
