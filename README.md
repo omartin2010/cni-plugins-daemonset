@@ -29,7 +29,7 @@ spec:
         ],
         "routes": [
           {
-            "dst": "192.168.144.1/32",      <-- VPC assigned IP for RoCE NIC
+            "dst": "192.168.144.1/32",      <-- VPC assigned IP for gateway on subnet
             "gw": "0.0.0.0"                 <-- needs to be 0.0.0.0 to use device
           },
           {
