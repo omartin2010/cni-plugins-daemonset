@@ -30,6 +30,8 @@ kubectl apply -f https://raw.githubusercontent.com/omartin2010/cni-plugins-daemo
 
 # Deploy NAD
 kubectl apply -f https://raw.githubusercontent.com/omartin2010/cni-plugins-daemonset/refs/heads/main/nad.yaml
+
+# Deploy pod with DHCP IP
 kubectl apply -f https://raw.githubusercontent.com/omartin2010/cni-plugins-daemonset/refs/heads/main/pod.yaml
 
 # Shell in pod
