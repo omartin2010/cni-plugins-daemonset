@@ -8,6 +8,7 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 RUN git clone https://github.com/omartin2010/plugins.git /src/plugins
 
 WORKDIR /src/plugins
+RUN git checkout zerofix
 ENV GO111MODULE=on
 RUN go mod download
 

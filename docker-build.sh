@@ -15,9 +15,8 @@
 # create the artifact repo
 REPO_NAME=oli-cni-dhcp-daemon
 LOCATION=us-central1
-PROJECT_ID=<PROJECT_ID>
 IMAGE_NAME=oli-cni-dhcp-daemon
-TAG=0.1
+TAG=0.2
 
 # build the container
 docker build -t $IMAGE_NAME:$TAG .
