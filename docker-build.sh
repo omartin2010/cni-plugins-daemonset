@@ -16,7 +16,7 @@
 REPO_NAME=oli-cni-dhcp-daemon
 LOCATION=us-central1
 IMAGE_NAME=oli-cni-dhcp-daemon
-TAG=0.2
+TAG=0.3
 
 # build the container
 docker build -t $IMAGE_NAME:$TAG .

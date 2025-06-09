@@ -29,7 +29,7 @@ spec:
 
       containers:
       - name: dhcp-daemon
-        image: omgoog/oli-cni-dhcp-daemon:0.2
+        image: omgoog/oli-cni-dhcp-daemon:0.3
         
         # Command to run the DHCP daemon.
         command: ["/opt/cni/bin/dhcp"]
