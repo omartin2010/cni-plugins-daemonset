@@ -40,3 +40,11 @@ kubectl exec -it ubuntu-oli -- /bin/bash
 apt update && apt install iproute2 iputils-ping openssh-client -y
 ip --brief address # Verify that IP address is there for rdma-2-in
 
+# Clean up
+
+kubectl delete -f https://raw.githubusercontent.com/omartin2010/cni-plugins-daemonset/refs/heads/main/pod.yaml
+
+kubectl delete -f https://raw.githubusercontent.com/omartin2010/cni-plugins-daemonset/refs/heads/main/nad.yaml
+
+kubectl delete -f https://raw.githubusercontent.com/omartin2010/cni-plugins-daemonset/refs/heads/main/oli-daemon-set.yaml
+
