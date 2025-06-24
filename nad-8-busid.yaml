@@ -1,0 +1,167 @@
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rdma-0
+  namespace: default
+spec:
+  config: |
+    {
+      "cniVersion": "0.4.0",
+      "type": "host-device",
+      "pciBusID": "0000:91:00.0",
+      "ipam": {
+          "type": "dhcp",
+          "request": [
+            { 
+              "option": "121" 
+            }
+          ]
+      }
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rdma-1
+  namespace: default
+spec:
+  config: |
+    {
+      "cniVersion": "0.4.0",
+      "type": "host-device",
+      "pciBusID": "0000:92:00.0",
+      "ipam": {
+          "type": "dhcp",
+          "request": [
+            { 
+              "option": "121" 
+            }
+          ]
+      }
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rdma-2
+  namespace: default
+spec:
+  config: |
+    {
+      "cniVersion": "0.4.0",
+      "type": "host-device",
+      "pciBusID": "0000:98:00.0",
+      "ipam": {
+          "type": "dhcp",
+          "request": [
+            { 
+              "option": "121" 
+            }
+          ]
+      }
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rdma-3
+  namespace: default
+spec:
+  config: |
+    {
+      "cniVersion": "0.4.0",
+      "type": "host-device",
+      "pciBusID": "0000:99:00.0",
+      "ipam": {
+          "type": "dhcp",
+          "request": [
+            { 
+              "option": "121" 
+            }
+          ]
+      }
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rdma-4
+  namespace: default
+spec:
+  config: |
+    {
+      "cniVersion": "0.4.0",
+      "type": "host-device",
+      "pciBusID": "0000:c6:00.0",
+      "ipam": {
+          "type": "dhcp",
+          "request": [
+            { 
+              "option": "121" 
+            }
+          ]
+      }
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rdma-5
+  namespace: default
+spec:
+  config: |
+    {
+      "cniVersion": "0.4.0",
+      "type": "host-device",
+      "pciBusID": "0000:c7:00.0",
+      "ipam": {
+          "type": "dhcp",
+          "request": [
+            { 
+              "option": "121" 
+            }
+          ]
+      }
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rdma-6
+  namespace: default
+spec:
+  config: |
+    {
+      "cniVersion": "0.4.0",
+      "type": "host-device",
+      "pciBusID": "0000:cd:00.0",
+      "ipam": {
+          "type": "dhcp",
+          "request": [
+            { 
+              "option": "121" 
+            }
+          ]
+      }
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rdma-7
+  namespace: default
+spec:
+  config: |
+    {
+      "cniVersion": "0.4.0",
+      "type": "host-device",
+      "pciBusID": "0000:ce:00.0",
+      "ipam": {
+          "type": "dhcp",
+          "request": [
+            { 
+              "option": "121" 
+            }
+          ]
+      }
+    }
