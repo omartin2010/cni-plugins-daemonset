@@ -13,7 +13,6 @@
 # limitations under the License.
 
 # create the artifact repo
-# REPO_NAME=oli-cni-dhcp-daemon
 LOCATION=us-central1
 IMAGE_NAME=oli-cni-dhcp-daemon
 TAG=0.4
