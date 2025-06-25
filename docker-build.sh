@@ -13,10 +13,10 @@
 # limitations under the License.
 
 # create the artifact repo
-REPO_NAME=oli-cni-dhcp-daemon
+# REPO_NAME=oli-cni-dhcp-daemon
 LOCATION=us-central1
 IMAGE_NAME=oli-cni-dhcp-daemon
-TAG=0.3
+TAG=0.4
 
 # build the container
 docker build -t $IMAGE_NAME:$TAG .
